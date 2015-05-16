@@ -1,7 +1,18 @@
 /***
  * TokenAnalisys.h
  *
- * Developed by Eng.º Anderson Marques Ribeiro.
+ * Copyright(c) Eng.º Anderson Marques Ribeiro.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef __TOKENANALISYS
@@ -25,16 +36,7 @@ using namespace DATASTORAGE;
 namespace TEXTTOOLS
 {
 
-// v1.1.0
-//
-// Alteração do nome para coincidir com a implementação em Object Pascal.
-// ----
 typedef long TokenIdentType;
-
-// v1.1.0
-//
-// Alteração do nome para coincidir com a implementação em Object Pascal.
-// ----
 const TokenIdentType TOKEN_IDENT_NULL = -1;
 
 extern TokenIdentType lastIdentToken;
@@ -108,10 +110,6 @@ public:
 	TokenAnalysis(TokenAnalysisConfigStruct config = TOKEN_ANALYSIS_CONFIG_PADRAO) :
 		m_taConfig(config)
 	{};
-	/*virtual ~TokenAnalysis()
-	{
-		delete m_pDiagrams;
-	};*/
 
 private:
 
@@ -122,7 +120,6 @@ private:
 		m_mtiTokens;
 	MapTokenConfigType
 		m_mtcTokensConfig;
-
 	TokenAnalysisConfigStruct
 		m_taConfig;
 
