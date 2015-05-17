@@ -11,6 +11,38 @@ TokenIdentType
  * ------------------------------------------------------------------------------------------------------------------------------------------------
  */
 
+TokenConfigStruct
+TokenAnalysis::getTokenConfig(const string &token)
+{
+MapTokenDataType::const_iterator
+	it = m_mtiTokens.find(token);
+
+	if (it == m_mtiTokens.end())
+		RAISE(ETokenAnalisys, ERR_INVALID_TOKEN);
+
+TokenConfigStruct
+	tc;
+
+	tokenConfigByIdent(it->second.ident, &tc);
+
+	return tc;
+};
+
+void
+TokenAnalysis::setTokenConfig(const string &token, TokenConfigStruct config)
+{
+MapTokenDataType::iterator	
+	dit = m_mtiTokens.find(token);
+
+	if (dit == m_mtiTokens.end())
+		RAISE(ETokenAnalisys, ERR_INVALID_TOKEN);
+
+MapTokenConfigType::iterator
+	it = m_mtcTokensConfig.find(dit->second.ident);
+
+	it->second = config;
+};
+
 bool
 TokenAnalysis::tokenConfigByIdent(TokenIdentType ident, TokenConfigStruct *config)
 {

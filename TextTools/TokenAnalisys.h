@@ -46,6 +46,15 @@ extern TokenIdentType lastIdentToken;
 struct TokenConfigStruct
 {
     bool ignore, appellant;
+
+	TokenConfigStruct &operator=(const TokenConfigStruct &tc)
+	{
+		ignore = tc.ignore;
+		appellant = tc.appellant;
+
+		return *this;
+	};
+
 }; // struct TokenConfigStruct
 
 struct TokenDataStruct
@@ -57,7 +66,7 @@ struct TokenDataStruct
 	{
 		return ident != TOKEN_IDENT_NULL;
 	};
-	
+
 }; // struct TokenDataStruct
 
 typedef vector<TokenDataStruct> TokenDataListType;
@@ -130,21 +139,8 @@ public:
         return m_mtiTokens.size();
     };
 
-    TokenConfigStruct getTokenConfig(const string &token)
-    {
-    MapTokenDataType::const_iterator
-		it = m_mtiTokens.find(token);
-
-        if (it == m_mtiTokens.end())
-            RAISE(ETokenAnalisys, ERR_INVALID_TOKEN);
-
-	TokenConfigStruct
-		tc;
-
-		tokenConfigByIdent(it->second.ident, &tc);
-
-		return tc;
-    };
+    TokenConfigStruct getTokenConfig(const string &token);
+	void setTokenConfig(const string &token, TokenConfigStruct tc);
 	bool tokenConfigByIdent(TokenIdentType ident, TokenConfigStruct *config = NULL);
 
     // addToken;
